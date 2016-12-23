@@ -13,7 +13,40 @@ require('laravel-elixir-vue-2');
  |
  */
 
-elixir((mix) => {
+/*elixir((mix) => {
     mix.sass('app.scss')
        .webpack('app.js');
+});*/
+
+elixir(function(mix) {
+    mix.styles([
+        'bootstrap.min.css',
+        'jquery.dataTables.min.css',
+        'metisMenu.min.css',
+        'sb-admin-2.css',
+        'font-awesome.min.css',
+    ]);
+});
+
+elixir(function(mix) {
+    mix.styles([
+        'select2.min.css',
+    ], 'public/css/vendor.css');
+});
+
+elixir(function(mix) {
+    mix.scripts([
+        'jquery.min.js',
+        'jquery.dataTables.min.js',
+        'bootstrap.min.js',
+        'metisMenu.min.js',
+        'sb-admin-2.js',
+        'custom-app.js',
+    ]);
+});
+
+elixir(function(mix) {
+    mix.scripts([
+        'select2.min.js',
+    ], 'public/js/vendor.js');
 });
