@@ -24,7 +24,10 @@ class UserController extends Controller
         if ($request->ajax()) {
             DB::statement(DB::raw('set @nomor = 0'));
 
-            $users = User::select([DB::raw('@nomor := @nomor+1 as nomor'), 'id', 'name', 'no_induk', 'email', 'updated_at']);
+            $users = User::select([DB::raw('@nomor := @nomor+1 as nomor'), 'id', 'name', 'no_induk', 'email', 'updated_at'])
+                ->whereHas('roles', function($r){
+                    $r->where('name', '!=', 'dosen');
+                });
 
             $dataUsers = Datatables::of($users)
                 ->editColumn('name', function($users){
@@ -57,7 +60,7 @@ class UserController extends Controller
         $html = $htmlBuilder
             ->addcolumn(['data' => 'nomor', 'name' => 'nomor', 'title' => 'No.'])
             ->addcolumn(['data' => 'no_induk', 'name' => 'no_induk', 'title' => 'No. Induk'])
-            ->addcolumn(['data' => 'name', 'name' => 'name', 'title' => 'Nama'])
+            ->addcolumn(['data' => 'name', 'name' => 'name', 'title' => 'Name'])
             ->addcolumn(['data' => 'role', 'name' => 'role', 'title' => 'Role', 'orderable' => false, 'searchable' => false])
             ->addcolumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Updated'])
             ->addcolumn(['data' => 'action', 'name' => 'action', 'title' => 'action', 'orderable' => false, 'searchable' => false]);

@@ -77,6 +77,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/registrasi_matakuliah/{periode}', 'RegistrasiMatakuliahController@show')
         ->middleware('role:admin|prodi')
         ->name('registrasi_matakuliah.show');
+    Route::get('/registrasi_matakuliah/{periode}/topdf/{time}', 'RegistrasiMatakuliahController@toPDF')
+        ->middleware('role:admin|prodi')
+        ->name('registrasi_matakuliah.topdf');
     Route::get('/registrasi_matakuliah/{periode}/{reg_mk}/edit', 'RegistrasiMatakuliahController@edit')
         ->middleware('role:admin')
         ->name('registrasi_matakuliah.edit');
@@ -85,6 +88,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/registrasi_matakuliah/{periode}/{reg_mk}/mahasiswa', 'RegistrasiMahasiswaController@index')
         ->middleware('role:admin|prodi')
         ->name('registrasi_mahasiswa.index');
+    Route::get('/registrasi_matakuliah/{periode}/{reg_mk}/mahasiswa/topdf/{time}', 'RegistrasiMahasiswaController@toPDF')
+        ->middleware('role:admin|prodi')
+        ->name('registrasi_mahasiswa.topdf');
     Route::get('/registrasi_matakuliah/{periode}/{reg_mk}/mahasiswa/create', 'RegistrasiMahasiswaController@create')
         ->middleware('role:admin')
         ->name('registrasi_mahasiswa.create');

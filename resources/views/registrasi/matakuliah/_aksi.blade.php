@@ -3,7 +3,7 @@
 		<div class="btn-group">
 			<a href="{{ $detail_url }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>
 
-			<a href="#" class="btn btn-xs btn-warning"><i class="fa fa-print"></i></a>
+			<a href="{{ $print_url }}" class="btn btn-xs btn-warning"><i class="fa fa-print"></i></a>
 		</div>
 	</p>
 	

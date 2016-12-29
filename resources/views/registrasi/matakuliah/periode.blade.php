@@ -16,7 +16,7 @@
 	<p>
 		<a href="{{ route('registrasi_matakuliah.index') }}" class="btn btn-xs btn-default"><i class="fa fa-arrow-left"></i> Kembali</a>
 
-		<a href="#" class="btn btn-xs btn-warning"><i class="fa fa-print"></i> Cetak</a>
+		<a href="{{ route('registrasi_matakuliah.topdf', [$periode->id, time()]) }}" class="btn btn-xs btn-warning"><i class="fa fa-print"></i> Cetak</a>
 
 		@role('admin')
 			<a href="{{ route('registrasi_matakuliah.create', $periode->id) }}" class="btn btn-xs btn-success"><i class="fa fa-plus"></i> Tambah</a>

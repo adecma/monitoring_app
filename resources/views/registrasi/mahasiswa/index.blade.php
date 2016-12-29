@@ -8,7 +8,7 @@
 	<p>
 		<a href="{{ route('registrasi_matakuliah.show', $reg->semester->periode_id) }}" class="btn btn-xs btn-default"><i class="fa fa-arrow-left"></i> Kembali</a>
 		
-		<a href="#" class="btn btn-xs btn-warning"><i class="fa fa-print"></i> Cetak</a>
+		<a href="{{ route('registrasi_mahasiswa.topdf', [$reg->semester->periode->id, $reg->id, time()]) }}" class="btn btn-xs btn-warning"><i class="fa fa-print"></i> Cetak</a>
 		
 		@role('admin')
 			<a href="{{ route('registrasi_mahasiswa.create', [$reg->semester->periode->id, $reg->id]) }}" class="btn btn-xs btn-success"><i class="fa fa-plus"></i> Tambah</a>

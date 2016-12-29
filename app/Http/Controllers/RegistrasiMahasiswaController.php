@@ -13,6 +13,7 @@ use App\RegistrasiMatakuliah;
 use App\User;
 
 use Laratrust;
+use PDF;
 
 class RegistrasiMahasiswaController extends Controller
 {
@@ -115,5 +116,27 @@ class RegistrasiMahasiswaController extends Controller
     	flash()->success('Registrasi mahasiswa  telah di hapus');
 
     	return redirect()->route('registrasi_mahasiswa.index', [$idA, $idB]);
+    }
+
+    public function toPDF($idA, $idB, $time)
+    {
+        $reg = RegistrasiMatakuliah::whereHas('semester', function($s) use($idA) {$s->where('periode_id', '=', $idA);})->findOrFail($idB);
+
+        $mahasiswas = RegistrasiMahasiswa::select([ 
+                    'registrasi_mahasiswa.id', 
+                    'users.name', 
+                    'users.no_induk', 
+                    DB::raw("(select sum(skor) from aspek_nilai where aspek_nilai.registrasi_mahasiswa_id=registrasi_mahasiswa.id) as skor")
+                ])
+                ->join('users', 'registrasi_mahasiswa.user_id', '=', 'users.id')
+                ->where('registrasi_mahasiswa.registrasi_matakuliah_id', '=', $reg->id)
+                ->get();
+
+        $no = 1;
+
+        $pdf = PDF::loadView('registrasi.mahasiswa.toPdf',compact('mahasiswas', 'reg', 'no'))
+            ->setPaper('a4', 'potrait');
+ 
+        return $pdf->stream('reportRegistrasiMahasiswa-'.$time.'.pdf');
     }
 }

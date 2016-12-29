@@ -15,6 +15,7 @@ use App\Jurusan;
 use App\Matakuliah;
 use App\User;
 use Laratrust;
+use PDF;
 
 class RegistrasiMatakuliahController extends Controller
 {    
@@ -138,6 +139,7 @@ class RegistrasiMatakuliahController extends Controller
                             'form_url' => route('registrasi_matakuliah.destroy', [$periode->id, $r->id]),
                             'edit_url' => route('registrasi_matakuliah.edit', [$periode->id, $r->id]),
                             'detail_url' => route('registrasi_mahasiswa.index', [$periode->id, $r->id]),
+                            'print_url' => route('registrasi_mahasiswa.topdf', [$periode->id, $r->id, time()]),
                         ]);
                     }else{
                         return '<a href="'.route('registrasi_mahasiswa.index', [$periode->id, $r->id]).'" class="btn btn-info btn-xs"><i class="fa fa-eye"></i> Detail</a>';
@@ -166,7 +168,7 @@ class RegistrasiMatakuliahController extends Controller
             ->addcolumn(['data' => 'semester', 'name' => 'semesters.jenis', 'title' => 'Semester'])
             ->addcolumn(['data' => 'jurusan', 'name' => 'jurusans.name', 'title' => 'Jurusan'])
             ->addcolumn(['data' => 'semes', 'name' => 'registrasi_matakuliah.semes', 'title' => 'Semes'])
-            ->addColumn(['data' => 'kd_mk', 'name' => 'matakuliahs.kd', 'title' => 'Matakuliah'])
+            ->addColumn(['data' => 'kd_mk', 'name' => 'matakuliahs.kd', 'title' => 'Courses'])
             ->addColumn(['data' => 'dosen', 'name' => 'users.name', 'title' => 'Dosen'])
             ->addcolumn(['data' => 'total', 'name' => 'total', 'title' => 'Mhs', 'orderable' => false, 'searchable' => false])
             ->addcolumn(['data' => 'skor', 'name' => 'skor', 'title' => 'Skor', 'searchable' => false])
@@ -242,5 +244,37 @@ class RegistrasiMatakuliahController extends Controller
         flash()->success('Registrasi matakuliah  telah di hapus');
 
         return redirect()->route('registrasi_matakuliah.show', $idP);
+    }
+
+    public function toPDF($idP, $time)
+    {
+        $periode = Periode::findOrFail($idP);
+
+        $registrasiMatakuliahs = RegistrasiMatakuliah::select([
+                    'registrasi_matakuliah.id', 
+                    'semesters.jenis as semester', 
+                    'semesters.status', 
+                    'jurusans.name as jurusan', 
+                    'registrasi_matakuliah.semes', 
+                    'matakuliahs.kd as kd_mk', 
+                    'matakuliahs.name as matakuliah', 
+                    'users.name as dosen', 
+                    DB::raw("(select sum(aspek_nilai.skor) from registrasi_mahasiswa inner join aspek_nilai on aspek_nilai.registrasi_mahasiswa_id=registrasi_mahasiswa.id where registrasi_mahasiswa.registrasi_matakuliah_id=registrasi_matakuliah.id) as skor")
+                ])
+                ->join('matakuliahs', 'registrasi_matakuliah.matakuliah_kd', '=', 'matakuliahs.kd')
+                ->join('jurusans', 'registrasi_matakuliah.jurusan_kd', '=', 'jurusans.kd')
+                ->join('users', 'registrasi_matakuliah.user_id', '=', 'users.id')
+                ->join('semesters', 'registrasi_matakuliah.semester_id', '=', 'semesters.id')
+                ->where('semesters.periode_id', '=', $periode->id)
+                ->orderBy('semester', 'desc')
+                ->orderBy('skor', 'desc')
+                ->get();
+
+        $no = 1;
+
+        $pdf = PDF::loadView('registrasi.matakuliah.toPdf',compact('registrasiMatakuliahs', 'periode', 'no'))
+            ->setPaper('a4', 'potrait');
+ 
+        return $pdf->stream('reportRegistrasiMatakuliah-'.$time.'.pdf');
     }
 }
