@@ -58,7 +58,7 @@ class RegistrasiMahasiswaController extends Controller
             ->addcolumn(['data' => 'skor', 'name' => 'skor', 'title' => 'Skor', 'searchable' => false]);
 
         if (Laratrust::hasRole('admin')) {
-            $html->addcolumn(['data' => 'action', 'name' => 'action', 'title' => 'action', 'orderable' => false, 'searchable' => false]);
+            $html->addcolumn(['data' => 'action', 'name' => 'action', 'title' => 'Aksi', 'orderable' => false, 'searchable' => false]);
         }
 
         return view('registrasi.mahasiswa.index', compact('reg', 'html'));

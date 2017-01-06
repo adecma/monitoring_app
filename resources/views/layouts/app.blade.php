@@ -55,7 +55,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url('/home') }}"><i class="fa fa-home fa-fw"></i>&nbsp;Home</a>
+                <a class="navbar-brand" href="{{ url('/home') }}"><i class="fa fa-home fa-fw"></i>&nbsp;Beranda</a>
             </div>
 
             <ul class="nav navbar-top-links navbar-right">
@@ -64,11 +64,11 @@
                         <i class="fa fa-user fa-fw"></i> {{ Auth::user()->name }} <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-messages">
-                        <li><a href="{{ route('profile.show') }}"><i class="fa fa-user fa-fw"></i> Profile</a>
+                        <li><a href="{{ route('profile.show') }}"><i class="fa fa-user fa-fw"></i> Profil</a>
                         </li>
                         <li>
                             <a href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                <i class="fa fa-sign-out fa-fw"></i> Logout
+                                <i class="fa fa-sign-out fa-fw"></i> Keluar
                             </a>
 
                             <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">

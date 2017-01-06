@@ -51,8 +51,8 @@ class PeriodeController extends Controller
             ->addcolumn(['data' => 'nomor', 'name' => 'nomor', 'title' => 'No.'])
             ->addcolumn(['data' => 'name', 'name' => 'name', 'title' => 'Periode'])
             ->addcolumn(['data' => 'semester', 'name' => 'semester', 'title' => 'Semester', 'orderable' => false, 'searchable' => false])
-            ->addcolumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Updated'])
-            ->addcolumn(['data' => 'action', 'name' => 'action', 'title' => 'action', 'orderable' => false, 'searchable' => false]);
+            ->addcolumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Diperbaharui'])
+            ->addcolumn(['data' => 'action', 'name' => 'action', 'title' => 'Aksi', 'orderable' => false, 'searchable' => false]);
 
         return view('master.periode.index', compact('html'));
     }

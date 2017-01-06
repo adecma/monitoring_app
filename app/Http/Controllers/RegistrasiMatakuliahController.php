@@ -49,7 +49,7 @@ class RegistrasiMatakuliahController extends Controller
         $html = $htmlBuilder
             ->addcolumn(['data' => 'nomor', 'name' => 'nomor', 'title' => 'No.'])
             ->addcolumn(['data' => 'name', 'name' => 'name', 'title' => 'Periode'])
-            ->addcolumn(['data' => 'action', 'name' => 'action', 'title' => 'action', 'orderable' => false, 'searchable' => false]);
+            ->addcolumn(['data' => 'action', 'name' => 'action', 'title' => 'Aksi', 'orderable' => false, 'searchable' => false]);
 
         return view('registrasi.matakuliah.index', compact('html'));
     }
@@ -168,11 +168,11 @@ class RegistrasiMatakuliahController extends Controller
             ->addcolumn(['data' => 'semester', 'name' => 'semesters.jenis', 'title' => 'Semester'])
             ->addcolumn(['data' => 'jurusan', 'name' => 'jurusans.name', 'title' => 'Jurusan'])
             ->addcolumn(['data' => 'semes', 'name' => 'registrasi_matakuliah.semes', 'title' => 'Semes'])
-            ->addColumn(['data' => 'kd_mk', 'name' => 'matakuliahs.kd', 'title' => 'Courses'])
+            ->addColumn(['data' => 'kd_mk', 'name' => 'matakuliahs.kd', 'title' => 'Matakuliah'])
             ->addColumn(['data' => 'dosen', 'name' => 'users.name', 'title' => 'Dosen'])
             ->addcolumn(['data' => 'total', 'name' => 'total', 'title' => 'Mhs', 'orderable' => false, 'searchable' => false])
             ->addcolumn(['data' => 'skor', 'name' => 'skor', 'title' => 'Skor', 'searchable' => false])
-            ->addcolumn(['data' => 'action', 'name' => 'action', 'title' => 'action', 'orderable' => false, 'searchable' => false]);
+            ->addcolumn(['data' => 'action', 'name' => 'action', 'title' => 'Aksi..', 'orderable' => false, 'searchable' => false]);
 
         return view('registrasi.matakuliah.periode', compact('html', 'periode'));
     }

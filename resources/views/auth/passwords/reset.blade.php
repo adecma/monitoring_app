@@ -3,7 +3,7 @@
 @section('content')
 <div class="login-panel panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Reset Password</h3>
+            <h3 class="panel-title">Reset Kata Sandi</h3>
         </div>
         <div class="panel-body">
             @if (session('status'))
@@ -47,13 +47,13 @@
                     @endif
                 </div>
 
-                <button type="submit" class="btn btn-lg btn-success btn-block">Reset Password</button>
+                <button type="submit" class="btn btn-lg btn-success btn-block">Reset</button>
             </form>
 
             <hr>
             
             <div class="text-center">
-                <a href="{{ route('login') }}"><i class="fa fa-sign-in"></i> Back to Login page</a>
+                <a href="{{ route('login') }}"><i class="fa fa-sign-in"></i> Kembali ke halaman Masuk</a>
             </div>
         </div>
     </div>

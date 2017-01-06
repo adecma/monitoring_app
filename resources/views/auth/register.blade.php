@@ -3,7 +3,7 @@
 @section('content')
     <div class="login-panel panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Register</h3>
+            <h3 class="panel-title">Mendaftar</h3>
         </div>
         <div class="panel-body">
             <form role="form" method="POST" action="{{ url('/register') }}">
@@ -43,13 +43,13 @@
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Password Confirmation" required>
                 </div>
 
-                <button type="submit" class="btn btn-lg btn-success btn-block">Register</button>
+                <button type="submit" class="btn btn-lg btn-success btn-block">Daftar</button>
             </form>
 
             <hr>
             
             <div class="text-center">
-                <a href="{{ route('login') }}"><i class="fa fa-sign-in"></i> Back to Login page</a>
+                <a href="{{ route('login') }}"><i class="fa fa-sign-in"></i> Kembali ke halaman Masuk</a>
             </div>
         </div>
     </div>

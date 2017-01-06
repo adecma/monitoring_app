@@ -2,7 +2,7 @@
 
 @section('heading')
 	<h4>
-		Profile {{ $user->name }}
+		Profil {{ $user->name }}
 	</h4>
 	<hr>
 @endsection
@@ -24,7 +24,7 @@
 					@endif
 					<dt>Role</dt>
 					<dd>{{ $user->roles->first()->display_name }}</dd>
-					<dt>Updated</dt>
+					<dt>Diperbaharui</dt>
 					<dd>{{ $user->updated_at->diffForHumans() }}</dd>
 				</dl>
 			</div>

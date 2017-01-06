@@ -3,7 +3,7 @@
 @section('content')
     <div class="login-panel panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Please Sign In</h3>
+            <h3 class="panel-title">Silakan masuk!</h3>
         </div>
         <div class="panel-body">
             <form role="form" method="POST" action="{{ url('/login') }}">
@@ -29,19 +29,19 @@
                     @endif
                 </div>
 
-                <div class="checkbox">
+                <!-- <div class="checkbox">
                     <label>
                         <input type="checkbox" name="remember"> Remember Me
                     </label>
-                </div>
+                </div> -->
 
-                <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
+                <button type="submit" class="btn btn-lg btn-success btn-block">Masuk</button>
                 
                 <hr>
                 
                 <div class="pull-right">
                     <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                        Forgot Your Password?
+                        Lupa kata sandi?
                     </a>
                 </div>
             </form>

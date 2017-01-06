@@ -44,10 +44,10 @@ class MatakuliahController extends Controller
 
         $html = $htmlBuilder
             ->addcolumn(['data' => 'nomor', 'name' => 'nomor', 'title' => 'No.'])
-            ->addcolumn(['data' => 'kd', 'name' => 'kd', 'title' => 'Code'])
-            ->addcolumn(['data' => 'name', 'name' => 'name', 'title' => 'Courses'])
-            ->addcolumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Updated'])
-            ->addcolumn(['data' => 'action', 'name' => 'action', 'title' => 'action', 'orderable' => false, 'searchable' => false]);
+            ->addcolumn(['data' => 'kd', 'name' => 'kd', 'title' => 'Kode'])
+            ->addcolumn(['data' => 'name', 'name' => 'name', 'title' => 'Matakuliah'])
+            ->addcolumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Diperbaharui'])
+            ->addcolumn(['data' => 'action', 'name' => 'action', 'title' => 'Aksi', 'orderable' => false, 'searchable' => false]);
 
         return view('master.matakuliah.index', compact('html'));
     }

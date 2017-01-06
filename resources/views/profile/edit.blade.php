@@ -2,7 +2,7 @@
 
 @section('heading')
 	<h4>
-		Profile {{ $user->name }}
+		Profil {{ $user->name }}
 	</h4>
 	<hr>
 @endsection
