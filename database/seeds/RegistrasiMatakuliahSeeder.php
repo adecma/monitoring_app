@@ -13,25 +13,25 @@ class RegistrasiMatakuliahSeeder extends Seeder
     public function run()
     {
         $registrasi = [
-			['matakuliah_kd' => 'IKB225', 'semes' => 5, 'user_id' => 11, 'jurusan_kd' => 'SI', 'semester_id' => 1],
-			['matakuliah_kd' => 'IKB230', 'semes' => 3, 'user_id' => 3, 'jurusan_kd' => 'SI', 'semester_id' => 1],
-			['matakuliah_kd' => 'IKB357', 'semes' => 5, 'user_id' => 8, 'jurusan_kd' => 'SI', 'semester_id' => 1],
-			['matakuliah_kd' => 'SKB282', 'semes' => 7, 'user_id' => 16, 'jurusan_kd' => 'SI', 'semester_id' => 1],
-			['matakuliah_kd' => 'SKB323', 'semes' => 3, 'user_id' => 3, 'jurusan_kd' => 'SI', 'semester_id' => 1],
-			['matakuliah_kd' => 'SKB330', 'semes' => 7, 'user_id' => 14, 'jurusan_kd' => 'SI', 'semester_id' => 1],
-			['matakuliah_kd' => 'SKB351', 'semes' => 3, 'user_id' => 16, 'jurusan_kd' => 'SI', 'semester_id' => 1],
-			['matakuliah_kd' => 'SKK312', 'semes' => 3, 'user_id' => 14, 'jurusan_kd' => 'SI', 'semester_id' => 1],
-			['matakuliah_kd' => 'IKB226', 'semes' => 5, 'user_id' => 51, 'jurusan_kd' => 'TI', 'semester_id' => 1],
-			['matakuliah_kd' => 'IKB227', 'semes' => 1, 'user_id' => 24, 'jurusan_kd' => 'TI', 'semester_id' => 1],
-			['matakuliah_kd' => 'IKK206', 'semes' => 1, 'user_id' => 24, 'jurusan_kd' => 'TI', 'semester_id' => 1],
-			['matakuliah_kd' => 'IKK207', 'semes' => 3, 'user_id' => 25, 'jurusan_kd' => 'TI', 'semester_id' => 1],
-			['matakuliah_kd' => 'IKK214', 'semes' => 1, 'user_id' => 20, 'jurusan_kd' => 'TI', 'semester_id' => 1],
-			['matakuliah_kd' => 'SKB232', 'semes' => 1, 'user_id' => 19, 'jurusan_kd' => 'TI', 'semester_id' => 1],
-			['matakuliah_kd' => 'SKB316', 'semes' => 5, 'user_id' => 27, 'jurusan_kd' => 'TI', 'semester_id' => 1],
-			['matakuliah_kd' => 'SKB331', 'semes' => 5, 'user_id' => 20, 'jurusan_kd' => 'TI', 'semester_id' => 1],
-			['matakuliah_kd' => 'SKB352', 'semes' => 7, 'user_id' => 21, 'jurusan_kd' => 'TI', 'semester_id' => 1],
-			['matakuliah_kd' => 'SKK217', 'semes' => 1, 'user_id' => 26, 'jurusan_kd' => 'TI', 'semester_id' => 1],
-        	['matakuliah_kd' => 'IKB223', 'semes' => 3, 'user_id' => 21, 'jurusan_kd' => 'TI', 'semester_id' => 1],
+			['matakuliah_kd' => 'IPK201', 'semes' => 1, 'user_id' => 3, 'jurusan_kd' => 'SI', 'semester_id' => 1],
+			['matakuliah_kd' => 'IPK202', 'semes' => 1, 'user_id' => 4, 'jurusan_kd' => 'SI', 'semester_id' => 1],
+			['matakuliah_kd' => 'IPK203', 'semes' => 3, 'user_id' => 5, 'jurusan_kd' => 'SI', 'semester_id' => 1],
+			['matakuliah_kd' => 'SPK204', 'semes' => 3, 'user_id' => 6, 'jurusan_kd' => 'SI', 'semester_id' => 1],
+
+			['matakuliah_kd' => 'IKK210', 'semes' => 1, 'user_id' => 11, 'jurusan_kd' => 'TI', 'semester_id' => 1],
+			['matakuliah_kd' => 'IKK211', 'semes' => 1, 'user_id' => 12, 'jurusan_kd' => 'TI', 'semester_id' => 1],
+			['matakuliah_kd' => 'IKK212', 'semes' => 3, 'user_id' => 13, 'jurusan_kd' => 'TI', 'semester_id' => 1],
+			['matakuliah_kd' => 'IKK213', 'semes' => 3, 'user_id' => 14, 'jurusan_kd' => 'TI', 'semester_id' => 1],
+
+            ['matakuliah_kd' => 'IKK206', 'semes' => 2, 'user_id' => 7, 'jurusan_kd' => 'SI', 'semester_id' => 2],
+            ['matakuliah_kd' => 'IKK207', 'semes' => 2, 'user_id' => 8, 'jurusan_kd' => 'SI', 'semester_id' => 2],
+            ['matakuliah_kd' => 'IKK355', 'semes' => 4, 'user_id' => 9, 'jurusan_kd' => 'SI', 'semester_id' => 2],
+            ['matakuliah_kd' => 'IKK356', 'semes' => 4, 'user_id' => 10, 'jurusan_kd' => 'SI', 'semester_id' => 2],
+
+			['matakuliah_kd' => 'SKK217', 'semes' => 2, 'user_id' => 15, 'jurusan_kd' => 'TI', 'semester_id' => 2],
+			['matakuliah_kd' => 'SKK310', 'semes' => 2, 'user_id' => 16, 'jurusan_kd' => 'TI', 'semester_id' => 2],
+			['matakuliah_kd' => 'SKK311', 'semes' => 4, 'user_id' => 17, 'jurusan_kd' => 'TI', 'semester_id' => 2],
+			['matakuliah_kd' => 'SKK312', 'semes' => 4, 'user_id' => 18, 'jurusan_kd' => 'TI', 'semester_id' => 2],
         ];
 
         foreach ($registrasi as $reg) {

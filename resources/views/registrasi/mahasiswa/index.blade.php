@@ -43,6 +43,28 @@
 			<span class="label label-info">{{ $reg->matakuliah_kd }}</span>
 			<span class="label label-info">{{ $reg->matakuliah->name }}</span>
 			<span class="label label-warning">{{ $reg->dosen->name }}</span>
+
+			<br>
+
+			<span class="label label-success">Skor {{ $nilai->sum('countSkor') }}</span>
+			<span class="label label-info">Rerata {{ $nilai->sum('rerataSkor') }}</span>
+
+			<br>
+
+			@if($nilai->sum('rerataSkor') >= 28.0 AND $nilai->sum('rerataSkor') <= 50.4)
+                <span class="label label-warning">SANGAT TIDAK BAIK</span>
+            @elseif(($nilai->sum('rerataSkor') >= 50.5 AND $nilai->sum('rerataSkor') <= 72.8))
+                <span class="label label-warning">TIDAK BAIK</span>
+            @elseif(($nilai->sum('rerataSkor') >= 72.9 AND $nilai->sum('rerataSkor') <= 95.2))
+                <span class="label label-warning">CUKUP BAIK</span>
+            @elseif(($nilai->sum('rerataSkor') >= 95.3 AND $nilai->sum('rerataSkor') <= 117.6))
+                <span class="label label-warning">BAIK</span>
+            @elseif(($nilai->sum('rerataSkor') >= 117.7 AND $nilai->sum('rerataSkor') <= 140.0))
+                <span class="label label-warning">SANGAT BAIK</span>
+            @else
+                <span class="label label-warning">UNKNOWN</span> 
+            @endif
+
 		</p>
 		<div class="table-responsive">
 			{!! $html->table() !!}

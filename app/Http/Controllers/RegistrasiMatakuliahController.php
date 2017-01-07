@@ -124,7 +124,8 @@ class RegistrasiMatakuliahController extends Controller
                     'matakuliahs.kd as kd_mk', 
                     'matakuliahs.name as matakuliah', 
                     'users.name as dosen', 
-                    DB::raw("(select sum(aspek_nilai.skor) from registrasi_mahasiswa inner join aspek_nilai on aspek_nilai.registrasi_mahasiswa_id=registrasi_mahasiswa.id where registrasi_mahasiswa.registrasi_matakuliah_id=registrasi_matakuliah.id) as skor")
+                    DB::raw("(select sum(aspek_nilai.skor) from registrasi_mahasiswa inner join aspek_nilai on aspek_nilai.registrasi_mahasiswa_id=registrasi_mahasiswa.id where registrasi_mahasiswa.registrasi_matakuliah_id=registrasi_matakuliah.id) as skor"),
+                    DB::raw("ROUND((select sum(aspek_nilai.skor) from registrasi_mahasiswa inner join aspek_nilai on aspek_nilai.registrasi_mahasiswa_id=registrasi_mahasiswa.id where registrasi_mahasiswa.registrasi_matakuliah_id=registrasi_matakuliah.id)/(SELECT COUNT(registrasi_mahasiswa.id) FROM registrasi_mahasiswa WHERE registrasi_mahasiswa.registrasi_matakuliah_id=registrasi_matakuliah.id), 2) as rerata")
                 ])
             	->join('matakuliahs', 'registrasi_matakuliah.matakuliah_kd', '=', 'matakuliahs.kd')
             	->join('jurusans', 'registrasi_matakuliah.jurusan_kd', '=', 'jurusans.kd')
@@ -172,6 +173,7 @@ class RegistrasiMatakuliahController extends Controller
             ->addColumn(['data' => 'dosen', 'name' => 'users.name', 'title' => 'Dosen'])
             ->addcolumn(['data' => 'total', 'name' => 'total', 'title' => 'Mhs', 'orderable' => false, 'searchable' => false])
             ->addcolumn(['data' => 'skor', 'name' => 'skor', 'title' => 'Skor', 'searchable' => false])
+            ->addcolumn(['data' => 'rerata', 'name' => 'rerata', 'title' => 'Rerata', 'searchable' => false])
             ->addcolumn(['data' => 'action', 'name' => 'action', 'title' => 'Aksi..', 'orderable' => false, 'searchable' => false]);
 
         return view('registrasi.matakuliah.periode', compact('html', 'periode'));
@@ -259,7 +261,8 @@ class RegistrasiMatakuliahController extends Controller
                     'matakuliahs.kd as kd_mk', 
                     'matakuliahs.name as matakuliah', 
                     'users.name as dosen', 
-                    DB::raw("(select sum(aspek_nilai.skor) from registrasi_mahasiswa inner join aspek_nilai on aspek_nilai.registrasi_mahasiswa_id=registrasi_mahasiswa.id where registrasi_mahasiswa.registrasi_matakuliah_id=registrasi_matakuliah.id) as skor")
+                    DB::raw("(select sum(aspek_nilai.skor) from registrasi_mahasiswa inner join aspek_nilai on aspek_nilai.registrasi_mahasiswa_id=registrasi_mahasiswa.id where registrasi_mahasiswa.registrasi_matakuliah_id=registrasi_matakuliah.id) as skor"),
+                    DB::raw("ROUND((select sum(aspek_nilai.skor) from registrasi_mahasiswa inner join aspek_nilai on aspek_nilai.registrasi_mahasiswa_id=registrasi_mahasiswa.id where registrasi_mahasiswa.registrasi_matakuliah_id=registrasi_matakuliah.id)/(SELECT COUNT(registrasi_mahasiswa.id) FROM registrasi_mahasiswa WHERE registrasi_mahasiswa.registrasi_matakuliah_id=registrasi_matakuliah.id), 2) as rerata")
                 ])
                 ->join('matakuliahs', 'registrasi_matakuliah.matakuliah_kd', '=', 'matakuliahs.kd')
                 ->join('jurusans', 'registrasi_matakuliah.jurusan_kd', '=', 'jurusans.kd')

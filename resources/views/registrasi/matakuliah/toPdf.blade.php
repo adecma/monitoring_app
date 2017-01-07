@@ -31,7 +31,12 @@
             <div class="row">
                 <div class="col-md-12">
                     <div style="font-family:Arial; font-size:12px;">
-                        <center><h3>Laporan Kuisioner Periode {{ $periode->name }}</h3></center>
+                        <center>
+                            <h3>
+                                HASIL PENILAIAN KINERJA DOSEN STMIK BANJARBARU <br>
+                                TAHUN AKADEMIK {{ $periode->name }}
+                            </h3>
+                        </center>
                     </div>
                     
                     <div class="">
@@ -46,19 +51,21 @@
                                         <th class="tg-3wr7">Dosen</th>
                                         <th class="tg-3wr7">Mhs</th>
                                         <th class="tg-3wr7">Skor</th>
+                                        <th class="tg-3wr7">Rerata</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($registrasiMatakuliahs as $regMk)
                                         <tr>
-                                            <td class="tg-rv4w" width="5%">{{ $no++ }}</td>
+                                            <td class="tg-ti5e" width="5%">{{ $no++ }}</td>
                                             <td class="tg-rv4w" width="10%">{{ $regMk->semester }}</td>
                                             <td class="tg-rv4w" width="10%">{{ $regMk->jurusan }}</td>
-                                            <td class="tg-rv4w" width="5%">{{ $regMk->semes }}</td>
-                                            <td class="tg-rv4w" width="30%">{{ $regMk->kd_mk }} - {{ $regMk->matakuliah }}</td>
+                                            <td class="tg-ti5e" width="5%">{{ $regMk->semes }}</td>
+                                            <td class="tg-rv4w" width="25%">{{ $regMk->kd_mk }} - {{ $regMk->matakuliah }}</td>
                                             <td class="tg-rv4w" width="20%">{{ $regMk->dosen }}</td>
-                                            <td class="tg-rv4w" width="10%">{{ $regMk->registrasi_mahasiswa->count() }}</td>
-                                            <td class="tg-rv4w" width="10%">{{ $regMk->skor }}</td>
+                                            <td class="tg-ti5e" width="7%">{{ $regMk->registrasi_mahasiswa->count() }}</td>
+                                            <td class="tg-ti5e" width="7%">{{ $regMk->skor }}</td>
+                                            <td class="tg-ti5e" width="11%">{{ $regMk->rerata }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

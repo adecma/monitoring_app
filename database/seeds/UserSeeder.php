@@ -106,6 +106,7 @@ class UserSeeder extends Seeder
             ['no_induk' => '310115012391', 'name' => 'MARIA ARSELLA', 'email' => 'maria.arsella@mail.com', 'password' => 'rahasia'],
             ['no_induk' => '310115012393', 'name' => 'APRIAN SATRIA NUGRAHA', 'email' => 'aprian.nugraha@mail.com', 'password' => 'rahasia'],
             ['no_induk' => '310115012394', 'name' => 'RAIDATUL JANNAH', 'email' => 'raidatul.jannah@mail.com', 'password' => 'rahasia'],
+            
             ['no_induk' => '310115022740', 'name' => 'RIDUAN MIRDAD', 'email' => 'riduan.mirdad@mail.com', 'password' => 'rahasia'],
             ['no_induk' => '310115022741', 'name' => 'ERWIN PUTRIANTI', 'email' => 'erwin.putrianti@mail.com', 'password' => 'rahasia'],
             ['no_induk' => '310115022742', 'name' => 'WIWIT SAPUTRI', 'email' => 'wiwit.saputri@mail.com', 'password' => 'rahasia'],

@@ -15,12 +15,12 @@ class SemesterSeeder extends Seeder
         $semesters = [
         	[
         		'jenis' => 'Ganjil',
-        		'status' => 'Non',
+        		'status' => 'Aktif',
         		'periode_id' => 1,
         	],
         	[
         		'jenis' => 'Genap',
-        		'status' => 'Aktif',
+        		'status' => 'Non',
         		'periode_id' => 1,
         	],
         ];

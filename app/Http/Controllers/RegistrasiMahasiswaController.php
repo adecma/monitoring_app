@@ -11,6 +11,7 @@ use DB;
 use App\RegistrasiMahasiswa;
 use App\RegistrasiMatakuliah;
 use App\User;
+use App\Aspek;
 
 use Laratrust;
 use PDF;
@@ -20,6 +21,14 @@ class RegistrasiMahasiswaController extends Controller
     public function index(Request $request, Builder $htmlBuilder, $idA, $idB)
     {
     	$reg = RegistrasiMatakuliah::whereHas('semester', function($s) use($idA) {$s->where('periode_id', '=', $idA);})->findOrFail($idB);
+
+        $nilai = DB::table('aspek_nilai')
+            ->join('registrasi_mahasiswa', 'aspek_nilai.registrasi_mahasiswa_id', '=', 'registrasi_mahasiswa.id')
+            ->join(DB::raw("(SELECT aspeks.id, aspeks.kompetensi_id, aspeks.name AS aspek, kompetensis.name AS kompetensi FROM aspeks INNER JOIN kompetensis ON aspeks.kompetensi_id = kompetensis.id) AS t_aspeks"), function($a){$a->on('aspek_nilai.aspek_id', '=', 't_aspeks.id');})
+            ->where('registrasi_mahasiswa.registrasi_matakuliah_id', '=', $reg->id)
+            ->groupBy('t_aspeks.kompetensi_id')
+            ->select(['aspek_nilai.id', 'aspek_nilai.registrasi_mahasiswa_id', 'aspek_nilai.aspek_id', 'aspek_nilai.skor', 'registrasi_mahasiswa.registrasi_matakuliah_id', 't_aspeks.kompetensi_id', 't_aspeks.kompetensi', DB::raw('SUM(aspek_nilai.skor) AS countSkor'), DB::raw('ROUND(SUM(aspek_nilai.skor)/'.$reg->registrasi_mahasiswa->count().', 2) AS rerataSkor')])
+            ->get();
     	
     	if ($request->ajax()) {
             DB::statement(DB::raw('set @nomor = 0'));
@@ -28,13 +37,17 @@ class RegistrasiMahasiswaController extends Controller
                     DB::raw('@nomor := @nomor+1 as nomor'), 
                     'registrasi_mahasiswa.id', 
                     'users.name', 
-                    'users.no_induk', 
+                    'users.no_induk',
+                    'users.email', 
                     DB::raw("(select sum(skor) from aspek_nilai where aspek_nilai.registrasi_mahasiswa_id=registrasi_mahasiswa.id) as skor")
                 ])
             	->join('users', 'registrasi_mahasiswa.user_id', '=', 'users.id')
             	->where('registrasi_mahasiswa.registrasi_matakuliah_id', '=', $reg->id);
 
-            $dataMahasiswas = Datatables::of($mahasiswas);
+            $dataMahasiswas = Datatables::of($mahasiswas)
+                ->editColumn('name', function($n){
+                    return $n->name.'<br>'.$n->email;
+                });
 
             if (Laratrust::hasRole('admin')) {
                 $dataMahasiswas->addColumn('action', function($mahasiswas) use($reg){
@@ -61,7 +74,7 @@ class RegistrasiMahasiswaController extends Controller
             $html->addcolumn(['data' => 'action', 'name' => 'action', 'title' => 'Aksi', 'orderable' => false, 'searchable' => false]);
         }
 
-        return view('registrasi.mahasiswa.index', compact('reg', 'html'));
+        return view('registrasi.mahasiswa.index', compact('reg', 'html', 'nilai'));
     }
 
     public function create($idA, $idB)
@@ -122,7 +135,7 @@ class RegistrasiMahasiswaController extends Controller
     {
         $reg = RegistrasiMatakuliah::whereHas('semester', function($s) use($idA) {$s->where('periode_id', '=', $idA);})->findOrFail($idB);
 
-        $mahasiswas = RegistrasiMahasiswa::select([ 
+        /*$mahasiswas = RegistrasiMahasiswa::select([ 
                     'registrasi_mahasiswa.id', 
                     'users.name', 
                     'users.no_induk', 
@@ -130,13 +143,29 @@ class RegistrasiMahasiswaController extends Controller
                 ])
                 ->join('users', 'registrasi_mahasiswa.user_id', '=', 'users.id')
                 ->where('registrasi_mahasiswa.registrasi_matakuliah_id', '=', $reg->id)
-                ->get();
+                ->get();*/
+
+        $nilai = DB::table('aspek_nilai')
+            ->join('registrasi_mahasiswa', 'aspek_nilai.registrasi_mahasiswa_id', '=', 'registrasi_mahasiswa.id')
+            ->join(DB::raw("(SELECT aspeks.id, aspeks.kompetensi_id, aspeks.name AS aspek, kompetensis.name AS kompetensi FROM aspeks INNER JOIN kompetensis ON aspeks.kompetensi_id = kompetensis.id) AS t_aspeks"), function($a){$a->on('aspek_nilai.aspek_id', '=', 't_aspeks.id');})
+            ->where('registrasi_mahasiswa.registrasi_matakuliah_id', '=', $reg->id)
+            ->groupBy('t_aspeks.kompetensi_id')
+            ->select(['aspek_nilai.id', 'aspek_nilai.registrasi_mahasiswa_id', 'aspek_nilai.aspek_id', 'aspek_nilai.skor', 'registrasi_mahasiswa.registrasi_matakuliah_id', 't_aspeks.kompetensi_id', 't_aspeks.kompetensi', DB::raw('SUM(aspek_nilai.skor) AS countSkor'), DB::raw('ROUND(SUM(aspek_nilai.skor)/'.$reg->registrasi_mahasiswa->count().', 2) AS rerataSkor')])
+            ->get();
+
+        $masterSkor = Aspek::with(['skor_mhs' => function($r) use($reg){$r->where('registrasi_mahasiswa.registrasi_matakuliah_id', '=', $reg->id);}])->get();
+
+        $masterSumSkor = RegistrasiMahasiswa::where('registrasi_mahasiswa.registrasi_matakuliah_id', '=', $reg->id)
+            ->select(['registrasi_mahasiswa.id', 'registrasi_mahasiswa.registrasi_matakuliah_id', 'registrasi_mahasiswa.user_id', DB::raw("(SELECT SUM(aspek_nilai.skor) FROM aspek_nilai WHERE aspek_nilai.registrasi_mahasiswa_id = registrasi_mahasiswa.id) AS sumSkor")])
+            ->get();
 
         $no = 1;
 
-        $pdf = PDF::loadView('registrasi.mahasiswa.toPdf',compact('mahasiswas', 'reg', 'no'))
-            ->setPaper('a4', 'potrait');
+        $pdf = PDF::loadView('registrasi.mahasiswa.toPdf-2',compact('nilai', 'reg', 'no', 'masterSkor', 'masterSumSkor'))
+            ->setPaper('a4', 'landscape');
  
-        return $pdf->stream('reportRegistrasiMahasiswa-'.$time.'.pdf');
+        return $pdf->stream('reportRegistrasiMahasiswa-'.$reg->id.'-'.$time.'.pdf');
+
+        //return view('registrasi.mahasiswa.toPdf-2',compact('nilai', 'reg', 'no', 'masterSkor', 'masterSumSkor'));
     }
 }

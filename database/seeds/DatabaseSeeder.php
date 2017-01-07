@@ -19,5 +19,8 @@ class DatabaseSeeder extends Seeder
         $this->call(PeriodeSeeder::class);
         $this->call(SemesterSeeder::class);
         $this->call(MatakuliahSeeder::class);
+        $this->call(RegistrasiMatakuliahSeeder::class);
+        $this->call(RegistrasiMahasiswaSeeder::class);
+        $this->call(AspekNilaiSeeder::class);
     }
 }
