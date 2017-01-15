@@ -14,6 +14,7 @@
         .tg th{font-family:Arial;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
         .tg .tg-3wr7{font-weight:bold;font-size:12px;font-family:"Arial", Helvetica, sans-serif !important;;text-align:center}
         .tg .tg-ti5e{font-size:10px;font-family:"Arial", Helvetica, sans-serif !important;;text-align:center}
+        .tg .tg-ti5b{font-weight: bold; font-size:10px;font-family:"Arial", Helvetica, sans-serif !important;;text-align:center}
         .tg .tg-rv4w{font-size:10px;font-family:"Arial", Helvetica, sans-serif !important;}
 
         .table  {border-collapse:collapse;border-spacing:0;border-color:#ccc;width: 100%; }
@@ -102,13 +103,73 @@
             @foreach($nilai as $skor)
                 <tr>
                     <td class="tg-rv4w" width="50%">{{ $skor->kompetensi }}</td>
-                    <td class="tg-rv4w" width="50%"> : {{ $skor->rerataSkor }}</td>
+                    <td class="tg-rv4w" width="50%">
+                        @if($skor->kompetensi_id == 1)
+                            @if($skor->rerataSkor >= 9.0 AND $skor->rerataSkor <= 16.2)
+                                : {{ $skor->rerataSkor }}  (Sangat Tidak Baik)
+                            @elseif($skor->rerataSkor >= 16.3 AND $skor->rerataSkor <= 23.4)
+                                : {{ $skor->rerataSkor }}  (Tidak Baik)
+                            @elseif($skor->rerataSkor >= 23.5 AND $skor->rerataSkor <= 30.6)
+                                : {{ $skor->rerataSkor }}  (Cukup Baik)
+                            @elseif($skor->rerataSkor >= 30.7 AND $skor->rerataSkor <= 37.8)
+                                : {{ $skor->rerataSkor }}  (Baik)
+                            @elseif($skor->rerataSkor >= 37.9 AND $skor->rerataSkor <= 45.0)
+                                : {{ $skor->rerataSkor }}  (Sangat Baik)
+                            @else
+                                : {{ $skor->rerataSkor }}  (Unknown)
+                            @endif                            
+                        @elseif($skor->kompetensi_id == 2)
+                            @if($skor->rerataSkor >= 8.0 AND $skor->rerataSkor <= 14.4)
+                                : {{ $skor->rerataSkor }}  (Sangat Tidak Baik)
+                            @elseif($skor->rerataSkor >= 14.5 AND $skor->rerataSkor <= 20.8)
+                                : {{ $skor->rerataSkor }}  (Tidak Baik)
+                            @elseif($skor->rerataSkor >= 20.9 AND $skor->rerataSkor <= 27.2)
+                                : {{ $skor->rerataSkor }}  (Cukup Baik)
+                            @elseif($skor->rerataSkor >= 27.3 AND $skor->rerataSkor <= 33.6)
+                                : {{ $skor->rerataSkor }}  (Baik)
+                            @elseif($skor->rerataSkor >= 33.7 AND $skor->rerataSkor <= 40.0)
+                                : {{ $skor->rerataSkor }}  (Sangat Baik)
+                            @else
+                                : {{ $skor->rerataSkor }}  (Unknown)
+                            @endif
+                        @elseif($skor->kompetensi_id == 3)
+                            @if($skor->rerataSkor >= 6.0 AND $skor->rerataSkor <= 10.8)
+                                : {{ $skor->rerataSkor }}  (Sangat Tidak Baik)
+                            @elseif($skor->rerataSkor >= 10.9 AND $skor->rerataSkor <= 15.6)
+                                : {{ $skor->rerataSkor }}  (Tidak Baik)
+                            @elseif($skor->rerataSkor >= 15.7 AND $skor->rerataSkor <= 20.4)
+                                : {{ $skor->rerataSkor }}  (Cukup Baik)
+                            @elseif($skor->rerataSkor >= 20.5 AND $skor->rerataSkor <= 25.2)
+                                : {{ $skor->rerataSkor }}  (Baik)
+                            @elseif($skor->rerataSkor >= 25.3 AND $skor->rerataSkor <= 30.0)
+                                : {{ $skor->rerataSkor }}  (Sangat Baik)
+                            @else
+                                : {{ $skor->rerataSkor }}  (Unknown)
+                            @endif
+                        @elseif($skor->kompetensi_id == 4)
+                            @if($skor->rerataSkor >= 5.0 AND $skor->rerataSkor <= 9.0)
+                                : {{ $skor->rerataSkor }}  (Sangat Tidak Baik)
+                            @elseif($skor->rerataSkor >= 9.1 AND $skor->rerataSkor <= 13.0)
+                                : {{ $skor->rerataSkor }}  (Tidak Baik)
+                            @elseif($skor->rerataSkor >= 13.1 AND $skor->rerataSkor <= 17.0)
+                                : {{ $skor->rerataSkor }}  (Cukup Baik)
+                            @elseif($skor->rerataSkor >= 17.1 AND $skor->rerataSkor <= 21.0)
+                                : {{ $skor->rerataSkor }}  (Baik)
+                            @elseif($skor->rerataSkor >= 21.1 AND $skor->rerataSkor <= 25.0)
+                                : {{ $skor->rerataSkor }}  (Sangat Baik)
+                            @else
+                                : {{ $skor->rerataSkor }}  (Unknown)
+                            @endif
+                        @else
+                            : {{ $skor->rerataSkor }}  (Unknown)
+                        @endif                         
+                    </td>
                 </tr>
             @endforeach
 
             <tr>
                 <td class="tg-rv4w" width="50%">Rerata Nilai Total (RNT)</td>
-                <td class="tg-rv4w" width="50%"> : {{ $nilai->sum('rerataSkor') }}</td>
+                <td class="tg-rv4w" width="50%"> : {{ round($nilai->sum('rerataSkor'),2) }}</td>
             </tr>
 
             <tr>
@@ -157,6 +218,16 @@
             @php
                 $totNilai = 0;
                 $rerata = 0;
+                $kompetensiSkor = 'A';
+                $batas = 0;
+
+                $arr_a = array();
+                $arr_b = array();
+                $bb = 0;
+                $arr_c = array();
+                $cc = 0;
+                $t = 0;
+                $u = 0;
             @endphp 
 
             @foreach($masterSkor as $aspek)
@@ -167,16 +238,145 @@
 
                 <tr>
                     <td class="tg-rv4w" width="2%">{{ $no++ }}</td>
-                    <td class="tg-rv4w" width="20%">{{ $aspek->kompetensi->name }} - {{ $aspek->name }}</td>
+                    <td class="tg-rv4w" width="20%">{{ $aspek->name }}</td>
                     @foreach($aspek->skor_mhs as $skor)
-                        <td class="tg-ti5e">{{ $skor->pivot->skor }}</td>
+                        @php
+                            $arr_a[$t][$u] = $skor->pivot->skor;
+                        @endphp
+
+                        <td class="tg-ti5e">{{ $arr_a[$t][$u] }}</td>
+
+                        @php
+                            $t++;
+                        @endphp
                     @endforeach
-                    <td class="tg-ti5e" width="4%">{{ $aspek->skor_mhs->sum('skor') }}</td>
-                    <td class="tg-ti5e" width="5%">{{ round($aspek->skor_mhs->sum('skor')/$aspek->skor_mhs->count(), 2) }}</td>
+
+                    @php
+                        $u++;
+                        $t = 0;
+
+                        $arr_b[$bb] = $aspek->skor_mhs->sum('skor');
+                        $arr_c[$cc] = $aspek->skor_mhs->sum('skor')/$aspek->skor_mhs->count();
+                    @endphp
+
+                    <td class="tg-ti5e" width="4%">{{ $arr_b[$bb] }}</td>
+                    <td class="tg-ti5e" width="5%">{{ round($arr_c[$cc],2) }}</td>
+
+                    @php
+                        $bb++;
+                        $cc++;
+                    @endphp
                 </tr>
+
+                <!-- Baris sub total skor/kompetensi -->
+                @for ($s = 0; $s < count($kompetensis); $s++)
+                    @php
+                        $batas += $kompetensis[$s]->countAspek;
+                    @endphp
+
+                    @if($loop->iteration == $batas)
+                        <tr>
+                            @php
+                                $f = 0;
+                            @endphp
+
+
+                            <td class="tg-ti5b" colspan="2">Skor {{ $kompetensiSkor++ }}</td>
+                            @foreach($aspek->skor_mhs as $skor)
+                                <td class="tg-ti5b">{{ array_sum($arr_a[$f]) }}</td>
+
+                                @php
+                                    $f++;
+                                @endphp
+                            @endforeach
+                            
+                            
+                            <td class="tg-ti5b">{{ array_sum($arr_b) }}</td>
+                            <td class="tg-ti5b">
+                                @php
+                                    $sumSubRerata = round(array_sum($arr_c),2);
+                                @endphp
+                                {{ $sumSubRerata }}
+
+                                <br>
+
+                                @if($kompetensis[$s]->id == 1)
+                                    @if($sumSubRerata >= 9.0 AND $sumSubRerata <= 16.2)
+                                        (Sangat Tidak Baik)
+                                    @elseif($sumSubRerata >= 16.3 AND $sumSubRerata <= 23.4)
+                                        (Tidak Baik)
+                                    @elseif($sumSubRerata >= 23.5 AND $sumSubRerata <= 30.6)
+                                        (Cukup Baik)
+                                    @elseif($sumSubRerata >= 30.7 AND $sumSubRerata <= 37.8)
+                                        (Baik)
+                                    @elseif($sumSubRerata >= 37.9 AND $sumSubRerata <= 45.0)
+                                        (Sangat Baik)
+                                    @else
+                                        (Unknown)
+                                    @endif                            
+                                @elseif($kompetensis[$s]->id == 2)
+                                    @if($sumSubRerata >= 8.0 AND $sumSubRerata <= 14.4)
+                                        (Sangat Tidak Baik)
+                                    @elseif($sumSubRerata >= 14.5 AND $sumSubRerata <= 20.8)
+                                        (Tidak Baik)
+                                    @elseif($sumSubRerata >= 20.9 AND $sumSubRerata <= 27.2)
+                                        (Cukup Baik)
+                                    @elseif($sumSubRerata >= 27.3 AND $sumSubRerata <= 33.6)
+                                        (Baik)
+                                    @elseif($sumSubRerata >= 33.7 AND $sumSubRerata <= 40.0)
+                                        (Sangat Baik)
+                                    @else
+                                        (Unknown)
+                                    @endif
+                                @elseif($kompetensis[$s]->id == 3)
+                                    @if($sumSubRerata >= 6.0 AND $sumSubRerata <= 10.8)
+                                        (Sangat Tidak Baik)
+                                    @elseif($sumSubRerata >= 10.9 AND $sumSubRerata <= 15.6)
+                                        (Tidak Baik)
+                                    @elseif($sumSubRerata >= 15.7 AND $sumSubRerata <= 20.4)
+                                        (Cukup Baik)
+                                    @elseif($sumSubRerata >= 20.5 AND $sumSubRerata <= 25.2)
+                                        (Baik)
+                                    @elseif($sumSubRerata >= 25.3 AND $sumSubRerata <= 30.0)
+                                        (Sangat Baik)
+                                    @else
+                                        (Unknown)
+                                    @endif
+                                @elseif($kompetensis[$s]->id == 4)
+                                    @if($sumSubRerata >= 5.0 AND $sumSubRerata <= 9.0)
+                                        (Sangat Tidak Baik)
+                                    @elseif($sumSubRerata >= 9.1 AND $sumSubRerata <= 13.0)
+                                        (Tidak Baik)
+                                    @elseif($sumSubRerata >= 13.1 AND $sumSubRerata <= 17.0)
+                                        (Cukup Baik)
+                                    @elseif($sumSubRerata >= 17.1 AND $sumSubRerata <= 21.0)
+                                        (Baik)
+                                    @elseif($sumSubRerata >= 21.1 AND $sumSubRerata <= 25.0)
+                                        (Sangat Baik)
+                                    @else
+                                        (Unknown)
+                                    @endif
+                                @else
+                                    (Unknown)
+                                @endif
+                            </td>
+
+                            <!-- reset var $arr_a setelah dijumlahkan -->
+                            @php
+                                $arr_a = array();
+                                $arr_b = array();
+                                $arr_c = array();
+                            @endphp
+                        </tr>
+                    @endif                    
+                @endfor
+                <!-- reset batas iterasi -->
+                @php
+                    $batas = 0;
+                @endphp                
             @endforeach
                 <tr>
-                    <td class="tg-ti5e" colspan="2"><strong>TOTAL</strong></td>
+                    <td class="tg-ti5e" colspan="2"><strong>TOTAL SKOR (A s/d D)</strong></td>
                     @foreach($masterSumSkor as $sum)
                         <td class="tg-ti5e"><strong>{{ $sum->sumSkor }}</strong></td>
                     @endforeach

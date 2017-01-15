@@ -12,6 +12,7 @@ use App\RegistrasiMahasiswa;
 use App\RegistrasiMatakuliah;
 use App\User;
 use App\Aspek;
+use App\Kompetensi;
 
 use Laratrust;
 use PDF;
@@ -159,13 +160,16 @@ class RegistrasiMahasiswaController extends Controller
             ->select(['registrasi_mahasiswa.id', 'registrasi_mahasiswa.registrasi_matakuliah_id', 'registrasi_mahasiswa.user_id', DB::raw("(SELECT SUM(aspek_nilai.skor) FROM aspek_nilai WHERE aspek_nilai.registrasi_mahasiswa_id = registrasi_mahasiswa.id) AS sumSkor")])
             ->get();
 
+        $kompetensis = Kompetensi::select(['id', 'name', DB::raw("(SELECT count(id) FROM aspeks WHERE aspeks.kompetensi_id=kompetensis.id) as countAspek")])->get();
+
         $no = 1;
 
-        $pdf = PDF::loadView('registrasi.mahasiswa.toPdf-2',compact('nilai', 'reg', 'no', 'masterSkor', 'masterSumSkor'))
+        $pdf = PDF::loadView('registrasi.mahasiswa.toPdf-2',compact('nilai', 'reg', 'no', 'masterSkor', 'masterSumSkor', 'kompetensis'))
             ->setPaper('a4', 'landscape');
  
         return $pdf->stream('reportRegistrasiMahasiswa-'.$reg->id.'-'.$time.'.pdf');
+        //dd($masterSumSkor->toArray());
 
-        //return view('registrasi.mahasiswa.toPdf-2',compact('nilai', 'reg', 'no', 'masterSkor', 'masterSumSkor'));
+        //return view('registrasi.mahasiswa.toPdf-2',compact('nilai', 'reg', 'no', 'masterSkor', 'masterSumSkor', 'kompetensis'));
     }
 }
