@@ -82,7 +82,7 @@ return [
     ],
     'string'               => 'Bidang :attribute harus string.',
     'timezone'             => 'Bidang :attribute harus menjadi zona valid.',
-    'unique'               => 'Bidang :attribute sudah diambil.',
+    'unique'               => 'Bidang :attribute sudah digunakan.',
     'uploaded'             => 'Bidang :attribute gagal meng-upload.',
     'url'                  => 'Bidang :attribute format tidak valid.',
 
