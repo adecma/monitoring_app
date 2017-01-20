@@ -32,17 +32,12 @@
 </head>
 <body>
     <div id="wrapper">
-        <div class="container">
+        <div class="container-fluid" style="background: #337ab7;">
             <div class="row">
-                <!-- <div class="col-md-4">
-                    <div class="pull-right">
-                    <br>  
-                    <img src="/img/logo.png" alt="STMIK Banjarbaru" class="img-responsive" style="width:auto; height:60px;">
-                    </div>
-                </div> -->
+                <div class="col-md-5 col-md-offset-3">
+                    <img src="/images/logo_stmik_baru_20081.jpg" alt="STMIK Banjarbaru" class="img-responsive" style="width:auto; height:60px; float: left; margin: 15px 10px 15px 30px;">
 
-                <div class="col-md-12 text-center">
-                    <h3>Monitoring Penentuan Indeks Kinerja Dosen STMIK Banjarbaru</h3>
+                    <div class="lead text-center" style="margin-top: 15px; margin-bottom: 0px; color: #ffffff;">Monitoring Penentuan Indeks Kinerja Dosen <br> STMIK Banjarbaru</div>
                 </div>
             </div>
         </div>

@@ -29,6 +29,15 @@
     </script>
 </head>
 <body>
+    <div class="container-fluid" style="background: #337ab7;">
+        <div class="row">
+            <div class="col-md-5 col-md-offset-3">
+                <img src="/images/logo_stmik_baru_20081.jpg" alt="STMIK Banjarbaru" class="img-responsive" style="width:auto; height:60px; float: left; margin: 25px 10px 15px 30px;">
+
+                <div class="lead text-center" style="margin-top: 15px; margin-bottom: 10px; color: #ffffff;">Selamat Datang di web<br> Monitoring Penentuan Indeks Kinerja Dosen <br> STMIK Banjarbaru</div>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
