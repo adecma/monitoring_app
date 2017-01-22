@@ -14,13 +14,13 @@
 			
 			{!! Form::open(['route' => ['matakuliah.update', $matakuliah->kd], 'method' => 'put']) !!}
 				<div class="panel-body">
-					<div class="form-group {{ $errors->has('kd') ? 'has-error' : '' }}">
-						{{ Form::label('kd', 'Kode') }}
-						{{ Form::text('kd', $matakuliah->kd, ['class' => 'form-control', 'placeholder' => 'Kode matakuliah', 'autocomplete' => 'off']) }}
+					<div class="form-group {{ $errors->has('kode') ? 'has-error' : '' }}">
+						{{ Form::label('kode', 'Kode') }}
+						{{ Form::text('kode', $matakuliah->kd, ['class' => 'form-control', 'placeholder' => 'Kode matakuliah', 'autocomplete' => 'off']) }}
 
-						@if($errors->has('kd'))
+						@if($errors->has('kode'))
 							<span class="help-block">
-								<strong>{{ $errors->first('kd') }}</strong>
+								<strong>{{ $errors->first('kode') }}</strong>
 							</span>
 						@endif
 					</div>

@@ -61,7 +61,7 @@ class UserController extends Controller
             ->addcolumn(['data' => 'nomor', 'name' => 'nomor', 'title' => 'No.'])
             ->addcolumn(['data' => 'no_induk', 'name' => 'no_induk', 'title' => 'No. Induk'])
             ->addcolumn(['data' => 'name', 'name' => 'name', 'title' => 'Nama'])
-            ->addcolumn(['data' => 'role', 'name' => 'role', 'title' => 'Role', 'orderable' => false, 'searchable' => false])
+            ->addcolumn(['data' => 'role', 'name' => 'role', 'title' => 'Peran', 'orderable' => false, 'searchable' => false])
             ->addcolumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Diperbaharui'])
             ->addcolumn(['data' => 'action', 'name' => 'action', 'title' => 'Aksi', 'orderable' => false, 'searchable' => false]);
 

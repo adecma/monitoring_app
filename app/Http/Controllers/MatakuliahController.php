@@ -71,12 +71,12 @@ class MatakuliahController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-        	'kd' => 'required',
+        	'kode' => 'required|unique:matakuliahs,kd',
             'name' => 'required',
         ]);
 
         $matakuliah = new Matakuliah;
-        $matakuliah->kd = strtoupper($request->input('kd'));
+        $matakuliah->kd = strtoupper($request->input('kode'));
         $matakuliah->name = $request->input('name');
         $matakuliah->save(); 
 
@@ -121,11 +121,11 @@ class MatakuliahController extends Controller
         $matakuliah = Matakuliah::findOrFail($kd);
 
         $this->validate($request, [
-            'kd' => 'required|unique:matakuliahs,kd,'.$matakuliah->kd.',kd',
+            'kode' => 'required|unique:matakuliahs,kd,'.$matakuliah->kd.',kd',
             'name' => 'required',
         ]);
 
-        $matakuliah->kd = strtoupper($request->input('kd'));
+        $matakuliah->kd = strtoupper($request->input('kode'));
         $matakuliah->name = $request->input('name');
         $matakuliah->save();
 

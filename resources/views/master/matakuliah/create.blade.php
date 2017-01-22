@@ -14,13 +14,13 @@
 			
 			{!! Form::open(['route' => 'matakuliah.store']) !!}
 				<div class="panel-body">
-					<div class="form-group {{ $errors->has('kd') ? 'has-error' : '' }}">
-						{{ Form::label('kd', 'Kode') }}
-						{{ Form::text('kd', null, ['class' => 'form-control', 'placeholder' => 'Kode matakuliah', 'autocomplete' => 'off']) }}
+					<div class="form-group {{ $errors->has('kode') ? 'has-error' : '' }}">
+						{{ Form::label('kode', 'Kode') }}
+						{{ Form::text('kode', null, ['class' => 'form-control', 'placeholder' => 'Kode matakuliah', 'autocomplete' => 'off']) }}
 
-						@if($errors->has('kd'))
+						@if($errors->has('kode'))
 							<span class="help-block">
-								<strong>{{ $errors->first('kd') }}</strong>
+								<strong>{{ $errors->first('kode') }}</strong>
 							</span>
 						@endif
 					</div>

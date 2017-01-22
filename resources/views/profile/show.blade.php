@@ -22,7 +22,7 @@
 						<dt>Jurusan</dt>
 						<dd>{{ $user->jurusan->first()->name }}</dd>
 					@endif
-					<dt>Role</dt>
+					<dt>Peran</dt>
 					<dd>{{ $user->roles->first()->display_name }}</dd>
 					<dt>Diperbaharui</dt>
 					<dd>{{ $user->updated_at->diffForHumans() }}</dd>

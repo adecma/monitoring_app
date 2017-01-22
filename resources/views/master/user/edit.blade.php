@@ -48,8 +48,8 @@
 					</div>
 
 					<div class="form-group {{ $errors->has('role') ? 'has-error' : '' }}">
-						{{ Form::label('role', 'Role') }}
-						{{ Form::select('role', $roles, $user->roles->first()->id, ['id' => 'role', 'class' => 'form-control', 'placeholder' => 'Pilih role']) }}
+						{{ Form::label('role', 'Peran') }}
+						{{ Form::select('role', $roles, $user->roles->first()->id, ['id' => 'role', 'class' => 'form-control', 'placeholder' => 'Pilih peran']) }}
 
 						@if($errors->has('role'))
 							<span class="help-block">
@@ -86,7 +86,7 @@
 @push('js')
 	<script>
 		$('#role').select2({
-			placeholder : 'Pilih role',
+			placeholder : 'Pilih peran',
 			allowClear: true
 		});
 	</script>

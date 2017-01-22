@@ -98,8 +98,11 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'name' => [
+            'required' => 'Bidang nama diperlukan.',
+        ],
+        'role' => [
+            'required' => 'Bidang peran diperlukan.',
         ],
     ],
 
