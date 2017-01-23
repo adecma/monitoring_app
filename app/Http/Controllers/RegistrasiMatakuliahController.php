@@ -155,6 +155,26 @@ class RegistrasiMatakuliahController extends Controller
                 })
                 ->editColumn('semester', function($s){
                 	return view('registrasi.matakuliah._semester', compact('s'));
+                })
+                ->addColumn('kesimpulan', function($k){
+                    if($k->rerata >= 28.0 AND $k->rerata <= 50.4){
+                        $kesimpulan = 'Sangat Tidak Baik';
+                    }elseif(($k->rerata >= 50.5 AND $k->rerata <= 72.8)){
+                        $kesimpulan = 'Tidak Baik';
+                    }                        
+                    elseif(($k->rerata >= 72.9 AND $k->rerata <= 95.2)){
+                        $kesimpulan = 'Cukup Baik';
+                    }                        
+                    elseif(($k->rerata >= 95.3 AND $k->rerata <= 117.6)){
+                        $kesimpulan = 'Baik';
+                    }                        
+                    elseif(($k->rerata >= 117.7 AND $k->rerata <= 140.0)){
+                        $kesimpulan = 'Sangat Baik';
+                    }else{
+                        $kesimpulan = 'Unknown';
+                    }
+
+                    return $kesimpulan;
                 });
 
             if ($keyword = $request->get('search')['value']) {
@@ -168,12 +188,13 @@ class RegistrasiMatakuliahController extends Controller
             ->addcolumn(['data' => 'nomor', 'name' => 'nomor', 'title' => 'No.'])
             ->addcolumn(['data' => 'semester', 'name' => 'semesters.jenis', 'title' => 'Semester'])
             ->addcolumn(['data' => 'jurusan', 'name' => 'jurusans.name', 'title' => 'Jurusan'])
-            ->addcolumn(['data' => 'semes', 'name' => 'registrasi_matakuliah.semes', 'title' => 'Semes'])
+            ->addcolumn(['data' => 'semes', 'name' => 'registrasi_matakuliah.semes', 'title' => 'Smt'])
             ->addColumn(['data' => 'kd_mk', 'name' => 'matakuliahs.kd', 'title' => 'Matakuliah'])
             ->addColumn(['data' => 'dosen', 'name' => 'users.name', 'title' => 'Dosen'])
             ->addcolumn(['data' => 'total', 'name' => 'total', 'title' => 'Mhs', 'orderable' => false, 'searchable' => false])
             ->addcolumn(['data' => 'skor', 'name' => 'skor', 'title' => 'Skor', 'searchable' => false])
             ->addcolumn(['data' => 'rerata', 'name' => 'rerata', 'title' => 'Rerata', 'searchable' => false])
+            ->addcolumn(['data' => 'kesimpulan', 'name' => 'kesimpulan', 'title' => 'Kesimpulan', 'orderable' => false, 'searchable' => false])
             ->addcolumn(['data' => 'action', 'name' => 'action', 'title' => 'Aksi..', 'orderable' => false, 'searchable' => false]);
 
         return view('registrasi.matakuliah.periode', compact('html', 'periode'));
@@ -248,7 +269,7 @@ class RegistrasiMatakuliahController extends Controller
         return redirect()->route('registrasi_matakuliah.show', $idP);
     }
 
-    public function toPDF($idP, $time)
+    public function toPDF($idP, $semester, $time)
     {
         $periode = Periode::findOrFail($idP);
 
@@ -269,8 +290,8 @@ class RegistrasiMatakuliahController extends Controller
                 ->join('users', 'registrasi_matakuliah.user_id', '=', 'users.id')
                 ->join('semesters', 'registrasi_matakuliah.semester_id', '=', 'semesters.id')
                 ->where('semesters.periode_id', '=', $periode->id)
-                ->orderBy('semester', 'desc')
-                ->orderBy('skor', 'desc')
+                ->where('semesters.id', '=', $semester)
+                ->orderBy('rerata', 'desc')
                 ->get();
 
         $no = 1;
@@ -279,5 +300,6 @@ class RegistrasiMatakuliahController extends Controller
             ->setPaper('a4', 'potrait');
  
         return $pdf->stream('reportRegistrasiMatakuliah-'.$time.'.pdf');
+        //return view('registrasi.matakuliah.toPdf',compact('registrasiMatakuliahs', 'periode', 'no'));
     }
 }

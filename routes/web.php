@@ -77,7 +77,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/registrasi_matakuliah/{periode}', 'RegistrasiMatakuliahController@show')
         ->middleware('role:admin|prodi')
         ->name('registrasi_matakuliah.show');
-    Route::get('/registrasi_matakuliah/{periode}/topdf/{time}', 'RegistrasiMatakuliahController@toPDF')
+    Route::get('/registrasi_matakuliah/{periode}/topdf/{semester}/{time}', 'RegistrasiMatakuliahController@toPDF')
         ->middleware('role:admin|prodi')
         ->name('registrasi_matakuliah.topdf');
     Route::get('/registrasi_matakuliah/{periode}/{reg_mk}/edit', 'RegistrasiMatakuliahController@edit')

@@ -13,11 +13,15 @@
         .tg td{font-family:Arial;font-size:12px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
         .tg th{font-family:Arial;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
         .tg .tg-3wr7{font-weight:bold;font-size:12px;font-family:"Arial", Helvetica, sans-serif !important;;text-align:center}
-        .tg .tg-ti5e{font-size:10px;font-family:"Arial", Helvetica, sans-serif !important;;text-align:center}
+        .tg .tg-ti5e{font-size:10px;font-family:"Arial", Helvetica, sans-serif !important;text-align:center}
+        
         .tg .tg-ti5b{font-weight: bold; font-size:10px;font-family:"Arial", Helvetica, sans-serif !important;;text-align:center}
         .tg .tg-rv4w{font-size:10px;font-family:"Arial", Helvetica, sans-serif !important;}
 
-        .table  {border-collapse:collapse;border-spacing:0;border-color:#ccc;width: 100%; }
+        .table  {border-collapse:collapse;border-spacing:0;border-color:#fff;width: 100%; }
+        .table .table-right{font-size:10px;font-family:"Arial", Helvetica, sans-serif !important;text-align:right}
+        .table .table-center{font-size:10px;font-family:"Arial", Helvetica, sans-serif !important;text-align:center}
+        .table .table-left{font-size:10px;font-family:"Arial", Helvetica, sans-serif !important;text-align:left}
     </style>
     
     <style>
@@ -401,6 +405,34 @@
                         @endif
                     </td>
                 </tr>
+        </tbody>
+    </table>
+    
+    <br><br>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <td colspan="2" class="table-right">Banjarbaru, ................................... <br></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="table-center">
+                    Lembaga Jaminan Mutu (LJM) <br>
+                    STMIK BANJARBARU <br><br>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-left" width="80%">
+                    Direktur, <br><br><br><br>
+                    (Nama....................................) <br>
+                    NIP/NIK..................................
+                </td>
+                <td class="table-left">
+                    Sekretaris, <br><br><br><br>
+                    (Nama....................................) <br>
+                    NIP/NIK..................................
+                </td>
+            </tr>
         </tbody>
     </table>
 </body>
