@@ -140,12 +140,12 @@
                                     <tr>
                                         <td class="table-left" width="80%">
                                             Direktur, <br><br><br><br>
-                                            Drs. H. Syahib Natarsyah, MM.M.Kom<br>
+                                            <u>Drs. H. Syahib Natarsyah, MM.M.Kom</u><br>
                                             NIP. 19560828 198503 1 001
                                         </td>
                                         <td class="table-left">
                                             Sekretaris, <br><br><br><br>
-                                            H. Sogiarto, M.Kom <br>
+                                            <u>H. Sogiarto, M.Kom</u> <br>
                                             NIK. 1002 0106
                                         </td>
                                     </tr>
