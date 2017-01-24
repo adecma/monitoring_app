@@ -168,7 +168,6 @@ class RegistrasiMahasiswaController extends Controller
             ->setPaper('a4', 'landscape');
  
         return $pdf->stream('reportRegistrasiMahasiswa-'.$reg->id.'-'.$time.'.pdf');
-        //dd($masterSumSkor->toArray());
 
         //return view('registrasi.mahasiswa.toPdf-2',compact('nilai', 'reg', 'no', 'masterSkor', 'masterSumSkor', 'kompetensis'));
     }

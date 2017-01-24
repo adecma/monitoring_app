@@ -10,7 +10,7 @@
 
     <style type="text/css">
         .tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;width: 100%; }
-        .tg td{font-family:Arial;font-size:12px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
+        .tg td{font-family:Arial;font-size:12px;padding:4px 2px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
         .tg th{font-family:Arial;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
         .tg .tg-3wr7{font-weight:bold;font-size:12px;font-family:"Arial", Helvetica, sans-serif !important;;text-align:center}
         .tg .tg-ti5e{font-size:10px;font-family:"Arial", Helvetica, sans-serif !important;text-align:center}
@@ -53,6 +53,17 @@
     </script>
 </head>
 <body>
+    <div style="text-align: center;">
+
+            <img src="{{ url('images/logo_stmik_baru_20081.jpg') }}" alt="STMIK Banjarbaru" style="width:auto; height:70px; float: left; margin: 5px 5px 5px 50px;">
+            <div style="margin: 0 0 0 0"><strong>SEKOLAH TINGGI MANAJEMEN INFORMATIKA DAN KOMPUTER
+            (STMIK) BANJARBARU <br>
+            LEMBAGA JAMINAN MUTU (LJM)</strong> <br>
+            Jl. Akhmad Yani Km 33,3 Loktabat Banjarbaru Telp (0511) 4782881 - 4781374 <br>
+            Jl. Sultan Adam No. 12 Banjarmasin Telp. (0511) 3303254
+            </div>
+    </div>
+    <hr>
     <div style="font-family:Arial; font-size:12px;">
         <center>
             <h3>
@@ -76,7 +87,7 @@
             </tr>
 
             <tr>
-                <td class="tg-rv4w" width="50%">Nama Matakuliah yang diasuh</td>
+                <td class="tg-rv4w" width="50%">Kode / Nama Matakuliah yang diasuh</td>
                 <td class="tg-rv4w" width="50%">{{ $reg->matakuliah_kd }} - {{ $reg->matakuliah->name }}</td>
             </tr>
 
@@ -197,6 +208,56 @@
         </tbody>
     </table>
 
+    <br><br>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <td colspan="2" class="table-right">
+                    Banjarbaru, 
+                    @if(date('n') == 1)
+                        {{ date('d') }} Januari {{ date('Y') }}
+                    @elseif(date('n') == 2)
+                        {{ date('d') }} Februari {{ date('Y') }}
+                    @elseif(date('n') == 3)
+                        {{ date('d') }} Maret {{ date('Y') }}
+                    @elseif(date('n') == 4)
+                        {{ date('d') }} April {{ date('Y') }}
+                    @elseif(date('n') == 5)
+                        {{ date('d') }} Mei {{ date('Y') }}
+                    @elseif(date('n') == 6)
+                        {{ date('d') }} Juni {{ date('Y') }}
+                    @elseif(date('n') == 7)
+                        {{ date('d') }} Juli {{ date('Y') }}
+                    @elseif(date('n') == 8)
+                        {{ date('d') }} Agustus {{ date('Y') }}
+                    @elseif(date('n') == 9)
+                        {{ date('d') }} September {{ date('Y') }}
+                    @elseif(date('n') == 10)
+                        {{ date('d') }} Oktober {{ date('Y') }}
+                    @elseif(date('n') == 11)
+                        {{ date('d') }} November {{ date('Y') }}
+                    @else
+                        {{ date('d') }} Desember {{ date('Y') }}
+                    @endif
+                    <br><br>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-left" width="80%">
+                    Direktur, <br><br><br><br>
+                    Drs. H. Syahib Natarsyah, MM.M.Kom<br>
+                    NIP. 19560828 198503 1 001
+                </td>
+                <td class="table-left">
+                    Sekretaris, <br><br><br><br>
+                    H. Sogiarto, M.Kom <br>
+                    NIK. 1002 0106
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
     <div class="page-break"></div>
 
     <div style="font-family:Arial; font-size:12px; text-align:center;">
@@ -241,7 +302,7 @@
                 @endphp 
 
                 <tr>
-                    <td class="tg-rv4w" width="2%">{{ $no++ }}</td>
+                    <td class="tg-ti5e" width="2%">{{ $no++ }}</td>
                     <td class="tg-rv4w" width="20%">{{ $aspek->name }}</td>
                     @foreach($aspek->skor_mhs as $skor)
                         @php
@@ -405,34 +466,6 @@
                         @endif
                     </td>
                 </tr>
-        </tbody>
-    </table>
-    
-    <br><br>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <td colspan="2" class="table-right">Banjarbaru, ................................... <br></td>
-            </tr>
-            <tr>
-                <td colspan="2" class="table-center">
-                    Lembaga Jaminan Mutu (LJM) <br>
-                    STMIK BANJARBARU <br><br>
-                </td>
-            </tr>
-            <tr>
-                <td class="table-left" width="80%">
-                    Direktur, <br><br><br><br>
-                    (Nama....................................) <br>
-                    NIP/NIK..................................
-                </td>
-                <td class="table-left">
-                    Sekretaris, <br><br><br><br>
-                    (Nama....................................) <br>
-                    NIP/NIK..................................
-                </td>
-            </tr>
         </tbody>
     </table>
 </body>

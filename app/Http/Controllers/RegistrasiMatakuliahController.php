@@ -273,6 +273,8 @@ class RegistrasiMatakuliahController extends Controller
     {
         $periode = Periode::findOrFail($idP);
 
+        $semes = Semester::findOrFail($semester);
+
         $registrasiMatakuliahs = RegistrasiMatakuliah::select([
                     'registrasi_matakuliah.id', 
                     'semesters.jenis as semester', 
@@ -296,10 +298,10 @@ class RegistrasiMatakuliahController extends Controller
 
         $no = 1;
 
-        $pdf = PDF::loadView('registrasi.matakuliah.toPdf',compact('registrasiMatakuliahs', 'periode', 'no'))
+        $pdf = PDF::loadView('registrasi.matakuliah.toPdf',compact('registrasiMatakuliahs', 'periode', 'semes', 'no'))
             ->setPaper('a4', 'potrait');
  
         return $pdf->stream('reportRegistrasiMatakuliah-'.$time.'.pdf');
-        //return view('registrasi.matakuliah.toPdf',compact('registrasiMatakuliahs', 'periode', 'no'));
+        //return view('registrasi.matakuliah.toPdf',compact('registrasiMatakuliahs', 'periode', 'semes', 'no'));
     }
 }

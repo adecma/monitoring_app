@@ -35,11 +35,23 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    <div>
+                        <center>
+                        <img src="{{ url('images/logo_stmik_baru_20081.jpg') }}" alt="STMIK Banjarbaru" style="width:auto; height:80px; float: left; margin: 15px 10px 15px 30px;">
+                            <strong>SEKOLAH TINGGI MANAJEMEN INFORMATIKA DAN KOMPUTER <br>
+                            (STMIK) BANJARBARU <br>
+                            LEMBAGA JAMINAN MUTU (LJM)</strong> <br>
+                            Jl. Akhmad Yani Km 33,3 Loktabat Banjarbaru Telp (0511) 4782881 - 4781374 <br>
+                            Jl. Sultan Adam No. 12 Banjarmasin Telp. (0511) 3303254
+                        </center>
+                    </div>
+                    <hr>
                     <div style="font-family:Arial; font-size:12px;">
                         <center>
                             <h3>
                                 HASIL PENILAIAN KINERJA DOSEN STMIK BANJARBARU <br>
-                                TAHUN AKADEMIK {{ $periode->name }}
+                                TAHUN AKADEMIK {{ $periode->name }} <br>
+                                SEMESTER {{ strtoupper($semes->jenis) }}
                             </h3>
                         </center>
                     </div>
@@ -49,7 +61,6 @@
                                 <thead>
                                     <tr>
                                         <th class="tg-3wr7">No</th>
-                                        <th class="tg-3wr7">Semeser</th>
                                         <th class="tg-3wr7">Jurusan</th>
                                         <th class="tg-3wr7">Smt</th>
                                         <th class="tg-3wr7">Matakuliah</th>
@@ -64,7 +75,6 @@
                                     @foreach($registrasiMatakuliahs as $regMk)
                                         <tr>
                                             <td class="tg-ti5e" width="5%">{{ $no++ }}</td>
-                                            <td class="tg-rv4w" width="6%">{{ $regMk->semester }}</td>
                                             <td class="tg-rv4w" width="8%">{{ $regMk->jurusan }}</td>
                                             <td class="tg-ti5e" width="3%">{{ $regMk->semes }}</td>
                                             <td class="tg-rv4w" width="21%">{{ $regMk->kd_mk }} - {{ $regMk->matakuliah }}</td>
@@ -97,24 +107,46 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td colspan="2" class="table-right">Banjarbaru, ................................... <br></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" class="table-center">
-                                            Lembaga Jaminan Mutu (LJM) <br>
-                                            STMIK BANJARBARU <br><br>
+                                        <td colspan="2" class="table-right">
+                                            Banjarbaru, 
+                                            @if(date('n') == 1)
+                                                {{ date('d') }} Januari {{ date('Y') }}
+                                            @elseif(date('n') == 2)
+                                                {{ date('d') }} Februari {{ date('Y') }}
+                                            @elseif(date('n') == 3)
+                                                {{ date('d') }} Maret {{ date('Y') }}
+                                            @elseif(date('n') == 4)
+                                                {{ date('d') }} April {{ date('Y') }}
+                                            @elseif(date('n') == 5)
+                                                {{ date('d') }} Mei {{ date('Y') }}
+                                            @elseif(date('n') == 6)
+                                                {{ date('d') }} Juni {{ date('Y') }}
+                                            @elseif(date('n') == 7)
+                                                {{ date('d') }} Juli {{ date('Y') }}
+                                            @elseif(date('n') == 8)
+                                                {{ date('d') }} Agustus {{ date('Y') }}
+                                            @elseif(date('n') == 9)
+                                                {{ date('d') }} September {{ date('Y') }}
+                                            @elseif(date('n') == 10)
+                                                {{ date('d') }} Oktober {{ date('Y') }}
+                                            @elseif(date('n') == 11)
+                                                {{ date('d') }} November {{ date('Y') }}
+                                            @else
+                                                {{ date('d') }} Desember {{ date('Y') }}
+                                            @endif
+                                            <br><br>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="table-left" width="80%">
                                             Direktur, <br><br><br><br>
-                                            (Nama....................................) <br>
-                                            NIP/NIK..................................
+                                            Drs. H. Syahib Natarsyah, MM.M.Kom<br>
+                                            NIP. 19560828 198503 1 001
                                         </td>
                                         <td class="table-left">
                                             Sekretaris, <br><br><br><br>
-                                            (Nama....................................) <br>
-                                            NIP/NIK..................................
+                                            H. Sogiarto, M.Kom <br>
+                                            NIK. 1002 0106
                                         </td>
                                     </tr>
                                 </tbody>
