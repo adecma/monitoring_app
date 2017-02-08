@@ -51,6 +51,7 @@ Route::group(['middleware' => 'auth'], function() {
     //master
     Route::group(['middleware' => 'role:admin'], function() {
         Route::resource('/user', 'UserController', ['except' => ['show']]);
+        Route::resource('/dosen', 'DosenController', ['except' => ['show']]);
         Route::resource('/matakuliah', 'MatakuliahController', ['except' => ['show']]);
         Route::resource('/kompetensi', 'KompetensiController', ['except' => ['show']]);
         Route::resource('/aspek', 'AspekController', ['except' => ['show']]);

@@ -2,7 +2,7 @@
 
 @section('heading')
 	<h4>
-		Katalog Matakuliah
+		Kuisioner Matakuliah
 	</h4>
 
 	<hr>

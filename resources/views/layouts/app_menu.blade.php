@@ -6,6 +6,9 @@
                 <a href="{{ route('user.index') }}">User</a>
             </li>
             <li>
+                <a href="{{ route('dosen.index') }}">Dosen</a>
+            </li>
+            <li>
                 <a href="{{ route('matakuliah.index') }}">Matakuliah</a>
             </li>
             <li>
@@ -33,7 +36,7 @@
 
 @role('mahasiswa')
     <li>
-        <a href="{{ route('katalog.index') }}"><i class="fa fa-book fa-fw"></i> Katalog</a>
+        <a href="{{ route('katalog.index') }}"><i class="fa fa-book fa-fw"></i> Kuisioner</a>
     </li>
 @endrole
 
