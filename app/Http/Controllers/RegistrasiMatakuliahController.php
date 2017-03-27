@@ -125,7 +125,7 @@ class RegistrasiMatakuliahController extends Controller
                     'matakuliahs.name as matakuliah', 
                     'users.name as dosen', 
                     DB::raw("(select sum(aspek_nilai.skor) from registrasi_mahasiswa inner join aspek_nilai on aspek_nilai.registrasi_mahasiswa_id=registrasi_mahasiswa.id where registrasi_mahasiswa.registrasi_matakuliah_id=registrasi_matakuliah.id) as skor"),
-                    DB::raw("ROUND((select sum(aspek_nilai.skor) from registrasi_mahasiswa inner join aspek_nilai on aspek_nilai.registrasi_mahasiswa_id=registrasi_mahasiswa.id where registrasi_mahasiswa.registrasi_matakuliah_id=registrasi_matakuliah.id)/(SELECT COUNT(registrasi_mahasiswa.id) FROM registrasi_mahasiswa WHERE registrasi_mahasiswa.registrasi_matakuliah_id=registrasi_matakuliah.id), 2) as rerata")
+                    DB::raw("(select sum(aspek_nilai.skor) from registrasi_mahasiswa inner join aspek_nilai on aspek_nilai.registrasi_mahasiswa_id=registrasi_mahasiswa.id where registrasi_mahasiswa.registrasi_matakuliah_id=registrasi_matakuliah.id)/(SELECT COUNT(registrasi_mahasiswa.id) FROM registrasi_mahasiswa WHERE registrasi_mahasiswa.registrasi_matakuliah_id=registrasi_matakuliah.id) as rerata")
                 ])
             	->join('matakuliahs', 'registrasi_matakuliah.matakuliah_kd', '=', 'matakuliahs.kd')
             	->join('jurusans', 'registrasi_matakuliah.jurusan_kd', '=', 'jurusans.kd')
@@ -285,7 +285,7 @@ class RegistrasiMatakuliahController extends Controller
                     'matakuliahs.name as matakuliah', 
                     'users.name as dosen', 
                     DB::raw("(select sum(aspek_nilai.skor) from registrasi_mahasiswa inner join aspek_nilai on aspek_nilai.registrasi_mahasiswa_id=registrasi_mahasiswa.id where registrasi_mahasiswa.registrasi_matakuliah_id=registrasi_matakuliah.id) as skor"),
-                    DB::raw("ROUND((select sum(aspek_nilai.skor) from registrasi_mahasiswa inner join aspek_nilai on aspek_nilai.registrasi_mahasiswa_id=registrasi_mahasiswa.id where registrasi_mahasiswa.registrasi_matakuliah_id=registrasi_matakuliah.id)/(SELECT COUNT(registrasi_mahasiswa.id) FROM registrasi_mahasiswa WHERE registrasi_mahasiswa.registrasi_matakuliah_id=registrasi_matakuliah.id), 2) as rerata")
+                    DB::raw("(select sum(aspek_nilai.skor) from registrasi_mahasiswa inner join aspek_nilai on aspek_nilai.registrasi_mahasiswa_id=registrasi_mahasiswa.id where registrasi_mahasiswa.registrasi_matakuliah_id=registrasi_matakuliah.id)/(SELECT COUNT(registrasi_mahasiswa.id) FROM registrasi_mahasiswa WHERE registrasi_mahasiswa.registrasi_matakuliah_id=registrasi_matakuliah.id) as rerata")
                 ])
                 ->join('matakuliahs', 'registrasi_matakuliah.matakuliah_kd', '=', 'matakuliahs.kd')
                 ->join('jurusans', 'registrasi_matakuliah.jurusan_kd', '=', 'jurusans.kd')

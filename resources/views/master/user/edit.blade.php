@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('heading')
-	<h4>Master User
+	<h4>Master Mahasiswa
 	</h4>
 
 	<hr>

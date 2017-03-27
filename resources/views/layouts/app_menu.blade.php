@@ -3,7 +3,7 @@
         <a href="#"><i class="fa fa-tasks fa-fw"></i> Master <span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
             <li>
-                <a href="{{ route('user.index') }}">User</a>
+                <a href="{{ route('user.index') }}">Mahasiswa</a>
             </li>
             <li>
                 <a href="{{ route('dosen.index') }}">Dosen</a>

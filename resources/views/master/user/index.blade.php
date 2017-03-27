@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('heading')
-	<h4>Master User
+	<h4>Master Mahasiswa
 		<div class="pull-right">
 			<a href="{{ route('user.create') }}" class="btn btn-xs btn-success"><i class="fa fa-plus"></i> Tambah</a>
 		</div>

@@ -28,7 +28,7 @@ class RegistrasiMahasiswaController extends Controller
             ->join(DB::raw("(SELECT aspeks.id, aspeks.kompetensi_id, aspeks.name AS aspek, kompetensis.name AS kompetensi FROM aspeks INNER JOIN kompetensis ON aspeks.kompetensi_id = kompetensis.id) AS t_aspeks"), function($a){$a->on('aspek_nilai.aspek_id', '=', 't_aspeks.id');})
             ->where('registrasi_mahasiswa.registrasi_matakuliah_id', '=', $reg->id)
             ->groupBy('t_aspeks.kompetensi_id')
-            ->select(['aspek_nilai.id', 'aspek_nilai.registrasi_mahasiswa_id', 'aspek_nilai.aspek_id', 'aspek_nilai.skor', 'registrasi_mahasiswa.registrasi_matakuliah_id', 't_aspeks.kompetensi_id', 't_aspeks.kompetensi', DB::raw('SUM(aspek_nilai.skor) AS countSkor'), DB::raw('ROUND(SUM(aspek_nilai.skor)/'.$reg->registrasi_mahasiswa->count().', 2) AS rerataSkor')])
+            ->select(['aspek_nilai.id', 'aspek_nilai.registrasi_mahasiswa_id', 'aspek_nilai.aspek_id', 'aspek_nilai.skor', 'registrasi_mahasiswa.registrasi_matakuliah_id', 't_aspeks.kompetensi_id', 't_aspeks.kompetensi', DB::raw('SUM(aspek_nilai.skor) AS countSkor'), DB::raw('SUM(aspek_nilai.skor)/'.$reg->registrasi_mahasiswa->count().' AS rerataSkor')])
             ->get();
     	
     	if ($request->ajax()) {
@@ -151,7 +151,7 @@ class RegistrasiMahasiswaController extends Controller
             ->join(DB::raw("(SELECT aspeks.id, aspeks.kompetensi_id, aspeks.name AS aspek, kompetensis.name AS kompetensi FROM aspeks INNER JOIN kompetensis ON aspeks.kompetensi_id = kompetensis.id) AS t_aspeks"), function($a){$a->on('aspek_nilai.aspek_id', '=', 't_aspeks.id');})
             ->where('registrasi_mahasiswa.registrasi_matakuliah_id', '=', $reg->id)
             ->groupBy('t_aspeks.kompetensi_id')
-            ->select(['aspek_nilai.id', 'aspek_nilai.registrasi_mahasiswa_id', 'aspek_nilai.aspek_id', 'aspek_nilai.skor', 'registrasi_mahasiswa.registrasi_matakuliah_id', 't_aspeks.kompetensi_id', 't_aspeks.kompetensi', DB::raw('SUM(aspek_nilai.skor) AS countSkor'), DB::raw('ROUND(SUM(aspek_nilai.skor)/'.$reg->registrasi_mahasiswa->count().', 2) AS rerataSkor')])
+            ->select(['aspek_nilai.id', 'aspek_nilai.registrasi_mahasiswa_id', 'aspek_nilai.aspek_id', 'aspek_nilai.skor', 'registrasi_mahasiswa.registrasi_matakuliah_id', 't_aspeks.kompetensi_id', 't_aspeks.kompetensi', DB::raw('SUM(aspek_nilai.skor) AS countSkor'), DB::raw('SUM(aspek_nilai.skor)/'.$reg->registrasi_mahasiswa->count().' AS rerataSkor')])
             ->get();
 
         $masterSkor = Aspek::with(['skor_mhs' => function($r) use($reg){$r->where('registrasi_mahasiswa.registrasi_matakuliah_id', '=', $reg->id);}])->get();

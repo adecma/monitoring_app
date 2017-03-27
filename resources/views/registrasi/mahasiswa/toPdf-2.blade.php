@@ -184,7 +184,7 @@
 
             <tr>
                 <td class="tg-rv4w" width="50%">Rerata Nilai Total (RNT)</td>
-                <td class="tg-rv4w" width="50%"> : {{ round($nilai->sum('rerataSkor'),2) }}</td>
+                <td class="tg-rv4w" width="50%"> : {{ $nilai->sum('rerataSkor') }}</td>
             </tr>
 
             <tr>
@@ -298,7 +298,7 @@
             @foreach($masterSkor as $aspek)
                 @php
                     $totNilai += $aspek->skor_mhs->sum('skor');
-                    $rerata += round($aspek->skor_mhs->sum('skor')/$aspek->skor_mhs->count(), 2);
+                    $rerata += $aspek->skor_mhs->sum('skor')/$aspek->skor_mhs->count();
                 @endphp 
 
                 <tr>
@@ -446,7 +446,7 @@
                         <td class="tg-ti5e"><strong>{{ $sum->sumSkor }}</strong></td>
                     @endforeach
                     <td class="tg-ti5e"><strong>{{ $totNilai }}</strong></td>
-                    <td class="tg-ti5e"><strong>{{ $rerata }}</strong></td>
+                    <td class="tg-ti5e"><strong>{{ round($rerata, 2) }}</strong></td>
                 </tr>
                 <tr>
                     <td colspan="{{ $masterSkor[0]->skor_mhs->count()+4 }}" class="tg-ti5e">
